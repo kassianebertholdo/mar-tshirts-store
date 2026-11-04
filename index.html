@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAR T-Shirts Store | T-shirts femininas, masculinas e infantis</title>
+  <meta name="description" content="Conheça a MAR T-Shirts Store: t-shirts femininas, masculinas e infantis, coleções especiais e moda com propósito. Peça pelo site e finalize pelo WhatsApp.">
+  <meta name="keywords" content="t-shirts femininas, camisetas masculinas, camisetas infantis, moda casual, MAR T-Shirts Store, Itabuna">
+  <meta name="author" content="MAR T-Shirts Store">
+  <meta name="theme-color" content="#c5a3d5">
+  <link rel="canonical" href="https://mar-tshirts-store.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MAR T-Shirts Store | Vestindo você com propósito">
+  <meta property="og:description" content="T-shirts para adultos e crianças, com carinho, personalidade e propósito.">
+  <meta property="og:image" content="assets/images/og-mar.jpg">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="js/config.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <div class="announcement">💜 Vestindo você com propósito <span>•</span> Enviamos para todo o Brasil</div>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="MAR T-Shirts Store - início">
+      <img class="brand-logo hidden" id="headerLogo" alt="Logo MAR T-Shirts Store"><span class="brand-mark" id="headerBrandText">M<span>♡</span>R</span>
+      <span class="brand-caption">T-SHIRTS STORE</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a href="#inicio">Início</a><a href="#colecoes">Coleções</a><a href="#produtos">Camisetas</a><a href="#historia">Nossa história</a><a href="#club">Club da Tshirteria</a><a id="instagramNav" href="https://www.instagram.com/mar.tshirtstore/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    </nav>
+    <button class="cart-button" id="openCart" aria-label="Abrir carrinho">Sacola <span id="cartCount">0</span></button>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <span class="eyebrow">ESTILO, PERSONALIDADE E PROPÓSITO</span>
+        <h1>Seu estilo, sua história.<br><em>Vista MAR.</em></h1>
+        <p>T-shirts para mulheres e homens que gostam de expressar sua personalidade. E para os pequenos, uma seção infantil cheia de encanto.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#produtos">Conheça a coleção <span>↗</span></a><a class="text-link" href="#historia">Conheça a MAR</a></div>
+        <div class="hero-note"><span class="note-heart">♡</span><span>Feito com amor, pensado para você.</span></div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-blob"></div>
+        <div class="hero-photo"><img src="assets/images/hero-camisetas.svg" alt="Coleção de t-shirts da MAR para adultos e crianças"></div>
+        <div class="floating-tag">feito com<br><strong>propósito</strong> ♡</div>
+        <div class="hero-sticker">MAR<br><small>style<br>moments</small></div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Diferenciais">
+      <div><span>♡</span><p>Escolhas com carinho</p></div><div><span>✦</span><p>Estampas especiais</p></div><div><span>♧</span><p>Envio para todo o Brasil</p></div><div><span>☼</span><p>Atendimento pelo WhatsApp</p></div>
+    </section>
+
+    <section class="section products-section" id="produtos">
+      <div class="section-heading">
+        <div><span class="eyebrow">ENCONTRE SEU ESTILO</span><h2>Encontre sua <em>MAR.</em></h2><p>T-shirts adultas para todos os estilos e uma coleção infantil especial.</p></div>
+        <a class="text-link desktop-link" href="#produtos">Ver todos os produtos ↓</a>
+      </div>
+      <div class="shop-controls">
+        <label class="search-box"><span>⌕</span><input id="productSearch" type="search" placeholder="Buscar uma camiseta..."></label>
+        <select id="categoryFilter" aria-label="Filtrar por categoria"><option value="all">Todas as categorias</option><option value="Feminino">Feminino</option><option value="Masculino">Masculino</option><option value="Unissex">Unissex</option><option value="Infantil">Infantil</option><option value="Coleções">Coleções</option></select>
+        <select id="sortFilter" aria-label="Ordenar produtos"><option value="featured">Em destaque</option><option value="price-asc">Menor preço</option><option value="price-desc">Maior preço</option><option value="name">Nome A–Z</option></select>
+      </div>
+      <div class="category-pills" id="categoryPills"><button class="pill active" data-category="all">Todos</button><button class="pill" data-category="Feminino">Feminino</button><button class="pill" data-category="Masculino">Masculino</button><button class="pill" data-category="Unissex">Unissex</button><button class="pill" data-category="Infantil">Infantil</button><button class="pill" data-category="Coleções">Coleções</button></div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <p class="empty-state hidden" id="emptyProducts">Não encontramos produtos com esses filtros. Que tal tentar outra busca?</p>
+    </section>
+
+    <section class="collection-banner" id="colecoes">
+      <div class="collection-art"><span class="collection-circle circle-one"></span><span class="collection-circle circle-two"></span><div class="collection-shirt">MAR<br><small>COLLECTION</small></div></div>
+      <div class="collection-copy"><span class="eyebrow">FEITAS PARA ENCANTAR</span><h2>Coleções que contam<br><em>histórias com estilo.</em></h2><p>Descubra estampas, cores e combinações para adultos e crianças. Sempre tem uma novidade especial esperando por você.</p><a class="btn btn-light" href="#produtos">Explorar camisetas <span>↗</span></a></div>
+    </section>
+
+    <section class="about-section section" id="historia">
+      <div class="about-photo-wrap">
+        <div class="about-photo" id="founderPhoto"><div class="photo-placeholder"><span>♡</span><strong>Um espaço para a Carol</strong><small>Foto da fundadora</small></div></div>
+        <span class="about-photo-caption">Com carinho, Carol Hottis</span>
+        <span class="about-deco">amor<br>em cada<br>detalhe ♡</span>
+      </div>
+      <div class="about-copy"><span class="eyebrow">POR TRÁS DA MAR</span><h2>Uma história de amor,<br><em>propósito e sonhos.</em></h2>
+        <div id="aboutTextDisplay">
+          <p>A MAR nasceu do coração de uma mãe, Carol Hottis, que desejava estar mais perto de suas filhas, Maria Alice e Rebeca.</p>
+          <p>Foi desse desejo tão especial que surgiu o nome MAR: a união dos nomes de suas duas maiores inspirações.</p>
+          <p>Mais do que empreender, Carol encontrou na MAR uma oportunidade de construir algo seu, sem abrir mão daquilo que tem de mais precioso: estar presente na vida das filhas.</p>
+          <p>Assim nasceu uma marca que carrega amor em cada detalhe, propósito em cada escolha e o desejo de vestir pessoas com carinho e personalidade.</p>
+        </div>
+        <strong class="signature">MAR T-Shirts Store: vestindo você com propósito.</strong>
+      </div>
+    </section>
+
+    <section class="club-section" id="club">
+      <div class="club-inner"><div class="club-symbol">MAR<br><span>♡</span></div><div class="club-copy"><span class="eyebrow">UM CANTINHO SÓ NOSSO</span><h2>Você já faz parte do<br><em>Club da Tshirteria?</em></h2><p>Entre para nosso grupo e fique pertinho das novidades, lançamentos, ações especiais e surpresas da MAR.</p><a class="btn btn-primary" id="clubLink" href="#" target="_blank" rel="noopener">Quero entrar no clube <span>↗</span></a><small>O link do grupo poderá ser atualizado pela administração da loja.</small></div></div>
+    </section>
+
+    <section class="newsletter section"><span class="eyebrow">FIQUE POR PERTO</span><h2>Novidades boas merecem ser compartilhadas.</h2><p>Salve nosso contato e acompanhe a MAR nas redes sociais.</p><a class="btn btn-outline" id="contactLink" href="#" target="_blank" rel="noopener">Falar com a MAR no WhatsApp</a><a class="btn btn-outline" id="instagramNewsletter" href="https://www.instagram.com/mar.tshirtstore/" target="_blank" rel="noopener noreferrer">Acompanhe a MAR no Instagram ↗</a></section>
+  </main>
+
+  <footer class="footer"><div class="footer-main"><div><a class="brand footer-brand" href="#inicio"><img class="brand-logo hidden" id="footerLogo" alt="Logo MAR T-Shirts Store"><span class="brand-mark" id="footerBrandText">M<span>♡</span>R</span><span class="brand-caption">T-SHIRTS STORE</span></a><p>Vestindo você com propósito. ♡</p></div><div><strong>Explore</strong><a href="#produtos">Camisetas</a><a href="#colecoes">Coleções</a><a href="#historia">Nossa história</a></div><div><strong>Atendimento</strong><a id="footerWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a><a id="footerClub" href="#club">Club da Tshirteria</a><a id="footerInstagram" href="https://www.instagram.com/mar.tshirtstore/" target="_blank" rel="noopener noreferrer">Instagram</a><span>Itabuna • Bahia</span></div></div><div class="footer-bottom"><span>© <span id="year"></span> MAR T-Shirts Store. Todos os direitos reservados.</span><a href="admin.html">Área da loja</a></div></footer>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Sacola de compras" aria-hidden="true">
+    <div class="cart-header"><div><span class="eyebrow">SEU PEDIDO</span><h2>Sua sacola ♡</h2></div><button class="icon-button" id="closeCart" aria-label="Fechar sacola">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer"><div class="cart-total"><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div><small>Frete e disponibilidade serão confirmados pelo WhatsApp.</small><button class="btn btn-primary full" id="checkoutButton">Finalizar pelo WhatsApp ↗</button><button class="text-link continue-shopping" id="continueShopping">Continuar comprando</button></div>
+  </aside>
+  <div class="toast" id="toast" role="status"></div>
+</body>
+</html>
